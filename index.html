@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>TOP/穀物契約管理アプリ</title>
+<link rel="stylesheet" href="css/sample.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
+
+</head>
+<body>
+    <div class="header">
+    <header>穀物契約管理アプリ　～XX社様～</header>
+    <nav>
+        <ul class="navigation" style="list-style: none;">
+          <li class="navigation_button"><a href="#content1">契約</a></li>
+          <li class="navigation_button"><a href="#content2">プライシング</a></li>
+          <li class="navigation_button"><a href="#content3">為替</a></li>
+          <li class="navigation_button"><a href="#content4">Information</a></li>
+          <li class="navigation_button"><a href="#content5">問い合わせ</a></li>
+        </ul>
+      </nav>
+    </div>
+
+<!-- コンテンツ表示画面 -->
+<div id="content1">
+    <h1>契約</h1>
+    <span>新規契約の締結→</span><button onclick="window.open('./newcontract.html')">新規締結</button>    
+    <br>
+    <span>締結済み既存契約の内容確認→</span><button onclick="window.open('./contract.html')">履歴確認</button>    
+</div>
+
+<div id="content2">
+    <h1>プライシング</h1>
+    <button onclick="window.open('./pricing.html')">注文する</button><br>
+    <img src="./img/cornchart.PNG" width="50%" height="50%" alt="corn chart">
+</div>
+
+
+<div id="content3">
+    <h1>為替</h1>
+    <button onclick="window.open('./kawase.html')">注文する</button><br>
+
+    <iframe src="https://min-fx.jp/outside/chart_mini.php?cw=300" class="chart" width="600px" height="400px" scrolling="no" frameborder="0"></iframe>
+</div>
+
+<div id="content4">
+    <h1>Information</h1>
+    <button onclick="window.open('./Information.html')">もっと見る</button><br>
+
+</div>
+
+<div id="content5">
+    <h1>問い合わせチャット</h1>
+    <button onclick="window.open('./chat.html')">問い合わせる</button><br>
+
+</div>
+
+<div id="page_top"><a href="#"></a></div>
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

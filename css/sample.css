@@ -1,0 +1,416 @@
+body{
+    background-color: #e1e8fa;
+    font-size: 14px;
+}
+
+.header{
+    height: 40px;
+    background-color: #f8f0aa;
+    font-size: 21px;
+    padding-top: 10px;
+    padding-left: 20px;
+    font-weight: bolder;
+    position: relative;
+    display: flex;
+}
+
+header{
+    width:400px;
+}
+
+    /* navigationボタン全体 */
+    .navigation {
+        display: flex;
+        position: absolute;
+        right: 0px;
+        font-size: 16px;
+       
+    }
+    
+        /* navigation個別ボタン */
+    .navigation_button {
+        margin-right: 30px;
+    }
+    
+    .navigation_button>a {
+            color: #222222;
+            text-decoration: none;
+    }
+
+h1{
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-top: 0px;
+}
+
+h2{
+    font-size: 16px;
+    color: steelblue;
+}
+
+#content1{
+    background-color: #e1e8fa;
+    padding: 20px 0;
+}
+
+#content1>span{
+    padding-left: 20px;
+}
+
+#content2{
+    background-color: #c0daf4;
+    padding: 20px 0;
+}
+
+#content2>img{
+    margin-left: 20px;
+}
+
+#content3{
+    background-color: #e1e8fa;
+    padding: 20px 0;
+}
+
+#content3>iframe{
+    margin-left: 20px;
+}
+
+#content4{
+    background-color: #c0daf4;
+    padding: 20px 0;
+}
+
+#content5{
+    background-color: #e1e8fa;
+    padding: 20px 0;
+}
+
+button{
+    margin-bottom: 10px;
+    margin-left: 20px;
+    background-color: #ffffff;
+}
+
+.title h2{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+
+.box{
+    display: flex;
+}
+
+.chartbox{
+    margin-left: 150px;
+}
+
+.inputbox{
+    width:400px;
+    margin: 0 auto;
+}
+
+.input{
+    border: double steelblue;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#send{
+    margin-left: 250px;
+}
+
+#output{
+    padding: 10px;
+}
+
+.navitop{
+    color: #222222;
+    text-decoration: none;
+    position: absolute;
+    right:50px;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+/* 新規契約締結ページ */
+.newcontract{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#conclusion{
+    margin-left: 300px;
+}
+
+/* プライシングオーダーページ */
+.pricing_orderbox{
+    display: flex;
+    margin-top: 20px;
+    margin-left: 20px;
+    height: 400px;
+}
+
+.pricing_input{
+    width: 380px;
+    border: double steelblue;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+}
+
+.pricing_orderlog{
+    width: 380px;
+    border: double steelblue;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    overflow: auto;
+    height: 350px;
+}
+
+.pricing_book{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.pricing_book h2{
+    margin-bottom: 0;
+}
+
+/* 為替オーダーページ */
+.kawase_orderbox{
+    display: flex;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.kawase_input{
+    width: 380px;
+    border: double steelblue;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+}
+
+.kawase_orderlog{
+    width: 380px;
+    border: double steelblue;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    overflow: auto;
+    height: 350px;
+}
+
+.kawase_book{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.kawase_book h2{
+    margin-bottom: 0;
+}
+
+
+
+/* 問い合わせページ */
+#chat_inputarea{
+    margin-top: 15px;
+}
+
+#chat_output{
+    height:500px;
+    overflow: auto;
+    width: 700px;
+}
+
+#chat_outputframe{
+    position: absolute;
+    /* display: flex; */
+    height: 500px;
+    left: 500px;
+    margin-top: 20px;
+    background-color: #afcce5;
+}
+
+#chat_uname{
+    width:90px;
+    height: 20px;
+}
+
+.chat{
+    position: relative;
+}
+
+#chat_inputarea { 
+    position: absolute;
+    /* display: flex;  */
+    flex-direction: row; 
+    gap: 5px;
+    justify-content:center;
+    margin-left: 20px;
+}
+
+#othermessagediv{
+    text-align: left;
+    margin-left: 350px;
+}
+
+#mymessagediv{
+    text-align: left;
+    position: relative; /* 今の位置を基準 */
+    left: 10px; /* 上から10px */
+}
+
+
+#delete{
+    margin-top: auto;
+    width: 40px;
+    height: 20px;
+    font-size: 0.05px;
+    color: thistle;
+    border-color:whitesmoke;
+    background-color:whitesmoke;
+}
+
+#othername{
+    font-size:  13px;
+    color:rgba(54, 59, 63, 0.651);
+    font-weight:bold
+}
+
+#myname{
+    font-size:  13px;
+    color:rgba(54, 59, 63, 0.651);
+    font-weight:bold
+}
+
+#othermessage{
+    width: 250px;
+    position: relative;
+    display: inline-block;
+    margin: 0 0 0 15px;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+    background-color:rgba(245, 245, 245, 0.952);
+    border-radius: 5px;
+}
+
+#othermessage:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -19px;
+    margin-top: -15px;
+    border: 8px solid transparent;
+    border-left: 18px solid rgba(245, 245, 245, 0.952);;
+    -webkit-transform: rotate(-35deg);
+  transform: rotate(-35deg);
+  }
+
+
+#mymessage{
+    width: 250px;
+    position: relative;
+    display: inline-block;
+    margin: 0 0 0 15px;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  /* font-size: 16px;
+    background-color:rgba(245, 245, 245, 0.952);
+    color:rgba(34, 36, 37, 0.651); */
+    background-color: #f8f0aa;
+    border-radius: 5px;
+}
+
+#mymessage:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -19px;
+    margin-top: -15px;
+    border: 8px solid transparent;
+    border-right: 18px solid #f8f0aa;
+    -webkit-transform: rotate(35deg);
+  transform: rotate(35deg);
+  }
+
+#otherdate{
+    font-size: 0.05px;
+    text-align: right;
+    width:250px;
+}
+
+#mydate{
+    font-size: 0.05px;
+    text-align: right;
+    width:250px;
+    position: relative; /* 今の位置を基準 */
+    left: 50px; /* 上から10px */
+}
+
+#othermsgdelete{
+    display: flex; 
+    flex-direction: row; 
+    gap: 5px;
+}
+
+#mymsgdelete{
+    display: flex; 
+    flex-direction: row; 
+    gap: 5px;
+}
+
+/* ページトップへ飛ぶボタンデザイン */
+#page_top{
+    width: 90px;
+    height: 90px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    opacity: 0.6;
+  }
+
+#page_top a{
+    position: relative;
+    display: block;
+    width: 90px;
+    height: 90px;
+    text-decoration: none;
+  }
+
+ #page_top a::before{
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: '\f102';
+    font-size: 25px;
+    color: #ffc500;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: -40px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    text-align: center;
+  }
+  #page_top a::after{
+    content: 'PAGE TOP';
+    font-size: 13px;
+    font-weight: bold;
+    color: #fff;
+    position: absolute;
+    top: 45px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    text-align: center;
+    color: #fff;
+  }

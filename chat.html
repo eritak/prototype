@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<!-- <link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/style.line.css"> -->
+<link rel="stylesheet" href="css/sample.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
+    <title>問い合わせチャット/穀物契約管理アプリ</title>
+</head>
+<body>
+
+<!-- コンテンツ表示画面 -->
+
+<div class="header">
+    <header>問い合わせチャット　～XX社様～</header>
+    <a href="./index.html" target="_blank" class="navitop">TOPへ戻る</a>
+</div>
+
+<div class="chat">
+
+    <div id="chat_inputarea">
+        <div>
+            <select id="chat_uname">
+                <option value="XX">XX社</option>
+                <option value="MC">MC回答</option>
+            </select>
+        </div>
+        <div>
+            <textarea name="" id="chat_text" cols="50" rows="10" placeholder="メッセージ"></textarea>
+            <button id="chat_send">送信</button>
+        </div>
+    </div>
+    <div id="chat_outputframe"><div id="chat_output" ></div></div>
+
+<br>
+</div>
+
+
+<!--/ コンテンツ表示画面 -->
+
+
+
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- JQuery -->
+<script>
+
+
+</script>
+
+<!--** 以下Firebase **-->
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+        import { getDatabase, ref, push, set, onChildAdded, remove, onChildRemoved }
+        from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.0/firebase-database.min.js";
+
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "",
+          authDomain: "gsapp3-ca18c.firebaseapp.com",
+          databaseURL: "https://gsapp3-ca18c-default-rtdb.firebaseio.com",
+          projectId: "gsapp3-ca18c",
+          storageBucket: "gsapp3-ca18c.appspot.com",
+          messagingSenderId: "51604676560",
+          appId: "1:51604676560:web:4c278a91cd7d2d2d9ba3d5"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        const db = getDatabase(app); // RealtimeDBに接続
+        const dbRef = ref(db, "chat"); // RealtimeDB内の"chat"を使う
+   
+  
+  
+    //ページ更新時の自分の名前プリセット
+    // let namae=localStorage.getItem("ラインアプリ名前");
+    // console.log(namae);
+    // $("#uname").val(namae);
+
+    $("#chat_send").on("click",function(){
+        const uname=$("#chat_uname").val();
+        // const uname="XX社"
+        const text=$("#chat_text").val();
+        const date1 = new Date();
+        const date2 = date1.getFullYear() + "/" + 
+            (date1.getMonth() + 1)  + "/" + 
+            date1.getDate() + "　" + 
+            date1.getHours() + "時" + 
+            date1.getMinutes() + "分" ;
+        const msg={
+            uname:uname,
+            text:text,
+            date2:date2,
+        }
+        const newPostRef=push(dbRef);
+        set(newPostRef,msg);
+        $("#chat_text").val("");
+        $("#chat_output").scrollTop(999999999);
+    });
+
+
+
+    onChildAdded(dbRef,function (data){
+        const msg=data.val();
+        const key=data.key; //keyを取得
+        const myname=$("#chat_uname").val(); 
+
+        //console.log(msg);
+        //console.log(key);
+        console.log(myname);
+        //console.log(msg.uname);
+         if(msg.uname==myname){
+            let 
+            h='<div id="mymessagediv">';
+            h+='<div id="myname">';
+            h+=msg.uname;
+            h+='</div>';
+
+            h+='<div id="mymsgdelete">';
+            h+='<div id="mymessage">';
+            h+=msg.text;
+            h+='</div>';
+            // h+='<button id="delete" class="';
+            // h+=key;
+            // h+='">削除</button>';
+            h+='</div>';
+
+            h+='<div id="mydate">';
+            h+=msg.date2;
+            h+='</div></div>';
+            //h+='<button id="delete" class="';
+            //h+=key;
+            //h+='">削除</button>';
+            //h+='</div>';
+            $("#chat_output").append(h);
+
+
+        }else{
+            let 
+            h='<div id="othermessagediv">';
+            h+='<div id="othername">';
+            h+=msg.uname;
+            h+='</div>';
+
+            h+='<div id="othermsgdelete">';
+            h+='<div id="othermessage">';
+            h+=msg.text;
+            h+='</div>';
+            // h+='<button id="delete" class="';
+            // h+=key;
+            // h+='">削除</button>';
+            h+='</div>';
+
+            h+='<div id="otherdate">';
+            h+=msg.date2;
+            h+='</div></div>';
+            //h+='<button id="delete" class="';
+            //h+=key;
+            //h+='">削除</button>';
+            //h+='</div>';
+            $("#chat_output").append(h);
+        };
+        let nameset=localStorage.getItem("ラインアプリ名前");
+        if(nameset!=myname){
+            localStorage.setItem("ラインアプリ名前",myname);
+            location.reload();
+            };
+        $("#chat_output").scrollTop(999999999);
+    })
+
+
+
+
+    $("#chat_text").on("keydown",function(e){
+        if(e.keyCode==13){
+        //console.log(e);
+        const uname=$("#chat_uname").val();
+        const text=$("#chat_text").val();
+        const date1 = new Date();
+        const date2 = date1.getFullYear() + "/" + 
+            (date1.getMonth() + 1)  + "/" + 
+            date1.getDate() + "　" + 
+            date1.getHours() + "時" + 
+            date1.getMinutes() + "分" ;
+        const msg={
+            uname:uname,
+            text:text,
+            date2:date2,
+        }
+        const newPostRef=push(dbRef);
+        set(newPostRef,msg);
+        $("#chat_text").val("");
+        $("#chat_output").scrollTop(999999999);
+        }
+        });
+
+    // ///個別削除ボタン押下イベント
+    // $(document).on("click","#delete", function () {
+    //     //alert("test");
+    //     const key=$(this).attr("class");
+    //     console.log(key);
+    //     remove(ref(db, "chat/" + key));
+    //     location.reload();
+    //     //console.log("remove: ${random_id}");
+    // });
+
+
+    // $("#allDelete").on("click",function(){
+    //     console.log("test");
+    //     remove(dbRef);
+    //     $("#output").remove();
+        //const uname=$("#uname").val();
+        //const text=$("#text").val();
+        //const msg={
+        //    uname:uname,
+        //    text:text
+        //}
+        //const newPostRef=push(dbRef);
+        //set(newPostRef,msg);
+        // });
+        
+
+const date1 = new Date();
+const date2 = date1.getFullYear() + "/" + 
+            (date1.getMonth() + 1)  + "/" + 
+            date1.getDate() + "　" + 
+            date1.getHours() + "時" + 
+            date1.getMinutes() + "分" 
+console.log(date2); 
+
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

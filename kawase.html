@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/sample.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
+    <title>為替/穀物契約管理アプリ</title>
+</head>
+<body>
+    <div class="header">
+    <header>為替オーダー　～XX社様～</header>
+    <a href="./index.html" target="_blank" class="navitop">TOPへ戻る</a>
+    </div>
+
+    <div class="kawase_orderbox">
+
+        <iframe src="https://min-fx.jp/outside/chart_mini.php?cw=300" class="chart" width="300px" height="400px" scrolling="no" frameborder="0"></iframe>
+
+        <div class="kawase_input">
+            <div class="kawase_title">
+                <h2>新規為替オーダー登録</h2>
+            </div>
+            <div>
+                オーダー日時：<span id="view_time"></span>
+            </div> 
+            <div>
+                積月：<select id="shipmonth"></select>
+            </div>
+            <div>
+                限月：<select id="duemonth"></select>
+            </div>
+            <div>
+                種類： <select id="type">
+                    <option value="SPOT">SPOT</option>
+                    <option value="指値">指値</option>
+                </select>
+            </div>
+            <div>
+                指値：￥<input type="number" id="rate" step="0.01" min="0"></input>
+            </div>     
+            <div>
+                金額：＄<input type="text" id="amount" data-type='number'></input>
+                
+            </div>
+            <button id="send">送信</button>
+        </div>
+        <div class="kawase_orderlog">
+            <div class="kawase_title">
+                <h2>オーダー履歴</h2>
+            </div>
+            <div id="kawase_output"></div>
+        </div>
+    </div>
+
+    <div class="kawase_book">
+    <h2>貴社取得状況まとめ</h2>
+    <table border="1">
+        <tr>
+            <th>契約積月</th>
+            <th>契約数量</th>
+            <th>FLAT単価</th>
+            <th>金額</th>
+            <th>平均取得レート</th>
+            <th>進捗率</th>
+            <th>未予約残額</th>
+            <th>最終平均取得レート</th>
+            <th>最終円建て単価</th>
+        </tr>
+        <tr>
+            <td>2022.1</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022.2</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022.3</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022.4</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022.5</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022.6</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022.7</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022.8</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022.9</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022.10</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022.11</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022.12</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    </div>
+
+    <div id="page_top"><a href="#"></a></div>
+
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- JQuery -->
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+  import { getDatabase, ref, push, set, onChildAdded, remove, onChildRemoved }
+    from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.0/firebase-database.min.js";
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "",
+    authDomain: "gsapp3-ca18c.firebaseapp.com",
+    databaseURL: "https://gsapp3-ca18c-default-rtdb.firebaseio.com",
+    projectId: "gsapp3-ca18c",
+    storageBucket: "gsapp3-ca18c.appspot.com",
+    messagingSenderId: "51604676560",
+    appId: "1:51604676560:web:d78a6e75d0660d449ba3d5"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+    const db = getDatabase(app); // RealtimeDBに接続
+    const dbRef = ref(db, "kawase"); // RealtimeDB内の"kawase"を使う
+
+
+
+// 送信日時表示
+document.getElementById("view_time").innerHTML = getNow();
+function getNow() {
+	var now = new Date();
+	var year = now.getFullYear();
+	var mon = now.getMonth()+1; //１を足すこと
+	var day = now.getDate();
+	var hour = now.getHours();
+	var min = now.getMinutes();
+	
+	//出力用
+	var s = year + "年" + mon + "月" + day + "日" + hour + "時" + min + "分" ; 
+	return s;
+}
+
+// 積月の選択
+    let shipmonthHTML = '';
+    for(let i = 1; i<13; i++){
+        shipmonthHTML += '<option value="'+i+'">'+i+"月"+'</option>'
+    }
+    $('#shipmonth').html(shipmonthHTML)
+
+// 限月の選択
+    let duemonthHTML = '';
+    for(let i = 1; i<13; i++){
+        duemonthHTML += '<option value="'+i+'">'+i+"月"+'</option>'
+    }
+    $('#duemonth').html(duemonthHTML)
+
+    // 金額のカンマ区切り
+        /* テキストボックスを取得 */
+        var NBR = document.querySelectorAll( "[data-type='number']" );
+        /* イベント操作 */
+        for(var i=0;i<NBR.length;i++){ NBR[ i ].oninput = fmtInput }
+
+        /* 入力時に実行する処理 */
+        function fmtInput( evt ){
+        var target = evt.target;
+        var data = target.value[ target.value.length-1 ];
+        if( ! data.match( /[0-9]/ ) ){
+        target.value = target.value.slice( 0, target.value.length-1 );
+        }
+        target.value = target.value
+        .replace( /,/g, '' )
+        .replace( /(\d)(?=(\d\d\d)+(?!\d))/g, '$1,' );
+        };
+
+// 送信→databaseへの連携
+$("#send").on("click", function () {  
+        const view_time = $("#view_time").html();
+        const shipmonth=$("#shipmonth").val();
+        const duemonth=$("#duemonth").val();
+        const type=$("#type").val();
+        const rate=$("#rate").val();
+        const amount=$("#amount").val();
+        const cancel="<button>キャンセル</button>";
+        const msg={
+            view_time: view_time,
+            shipmonth: "積月："+shipmonth+"月",
+            duemonth: "限月："+duemonth+"月",
+            type: "種類："+type,
+            rate: "指値：￥"+rate,
+            amount: "金額：＄"+amount,
+            cancel: cancel,
+        };
+        const newPostRef=push(dbRef);
+        set(newPostRef, msg);
+        window.location.reload();
+        
+    });
+
+    // onChildAdded : データが追加されたときにアクションが起こる
+    onChildAdded(dbRef, function(data){
+        const msg = data.val();
+        console.log(msg);
+        const key=data.key;
+        console.log(key);
+        // const cancel="<button id="key">キャンセル</button>";
+        let h ="<p>";
+            h +=msg.view_time;
+            h +="<br>";
+            h +=msg.shipmonth;
+            h +="<br>";
+            h +=msg.duemonth;
+            h +="<br>";
+            h +=msg.type;
+            h +="<br>";
+            h +=msg.rate;
+            h +="<br>";
+            h +=msg.amount;
+            h +="<br>";
+            h +="<button id=";
+            h +=key;
+            h +=">キャンセル</button>";
+            h +="</p>";
+        $("#kawase_output").prepend(h);
+               
+        $('#' + key).on("click", function(){
+            remove(ref(db, "chat/" + key));
+                $('#' + key).remove();
+                window.location.reload();
+        });
+    });
+
+    // DBからデータが削除されたら画面更新される
+    onChildRemoved(dbRef, function(data){
+        window.location.reload();
+    });
+
+</script>    
+   
+</body>
+</html>
